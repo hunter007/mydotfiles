@@ -21,14 +21,14 @@
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-# sudo scutil --set ComputerName "0x6D746873"
-# sudo scutil --set HostName "0x6D746873"
-# sudo scutil --set LocalHostName "0x6D746873"
-# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
+sudo scutil --set ComputerName "zhaowentao"
+sudo scutil --set HostName "zhaowentao's mba"
+sudo scutil --set LocalHostName "zhaowentao's mba"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "zhaowentao's mba"
 
 # Set battery and power standby delay to 24 hours (default is 1 hour)
-# sudo pmset -a standbydelay 86400
-# sudo pmset -a autopoweroffdelay 86400
+sudo pmset -a standbydelay 86400
+sudo pmset -a autopoweroffdelay 86400
 
 # Disable battery and power sleep mode
 sudo pmset -a standby 0

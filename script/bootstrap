@@ -105,7 +105,7 @@ link_file () {
 install_homebrew () {
   if test ! $(which brew)
   then
-    echo "  Installing Homebrew for you..."
+    echo "  开始安装 Homebrew ..."
 
     # Install the correct homebrew for each OS type
     if test "$(uname)" = "Darwin"
@@ -122,13 +122,22 @@ install_homebrew () {
 install_ohmyzsh () {
   if [ ! -d ~/.oh-my-zsh ]
   then
-    info '  Installing oh-my-zsh'
+    info '  安装 oh-my-zsh'
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
   fi
 }
 
+
+install_pip(){
+  if [ ！ -e pip ]
+  then
+      info ' 安装 pip'
+      curl -L https://bootstrap.pypa.io/get-pip.py | python
+  fi
+}
+
 install_dotfiles () {
-  info '  Installing dotfiles'
+  info '  安装 dotfiles'
 
   local overwrite_all=false backup_all=false skip_all=false
 
@@ -146,14 +155,14 @@ install_dotfiles
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
 then
-  info "installing dependencies"
+  info "安装 homebrew dependencies"
   if source bin/dot
   then
-    success "dependencies installed"
+    success "homebrew dependencies 安装完成！"
   else
-    fail "error installing dependencies"
+    fail "安装homebrew dependencie失败"
   fi
 fi
 
 echo ''
-echo '  All installed!'
+echo '  安装完毕！'
