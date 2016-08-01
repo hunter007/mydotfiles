@@ -14,7 +14,7 @@ info () {
 }
 
 user () {
-  printf "\r  [ \033[0;33m?\033[0m ] $1 "
+  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
 }
 
 success () {
@@ -26,6 +26,29 @@ fail () {
   echo ''
   exit
 }
+
+setup_gitconfig () {
+  if ! [ -f git/gitconfig.local.symlink ]
+  then
+    info 'setup gitconfig'
+
+    git_credential='cache'
+    if [ "$(uname -s)" == "Darwin" ]
+    then
+      git_credential='osxkeychain'
+    fi
+
+    user ' - What is your github author name?'
+    read -e git_authorname
+    user ' - What is your github author email?'
+    read -e git_authoremail
+
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
+
+    success 'gitconfig'
+  fi
+}
+
 
 link_file () {
   local src=$1 dst=$2
@@ -102,67 +125,32 @@ link_file () {
   fi
 }
 
-install_homebrew () {
-  if test ! $(which brew)
-  then
-    echo "  开始安装 Homebrew ..."
-
-    # Install the correct homebrew for each OS type
-    if test "$(uname)" = "Darwin"
-    then
-      ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
-    then
-      ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
-    fi
-
-  fi
-}
-
-install_ohmyzsh () {
-  if [ ! -d ~/.oh-my-zsh ]
-  then
-    info '  安装 oh-my-zsh'
-    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-  fi
-}
-
-
-install_pip(){
-  if [ ！ -e pip ]
-  then
-      info ' 安装 pip'
-      curl -L https://bootstrap.pypa.io/get-pip.py | python
-  fi
-}
-
 install_dotfiles () {
-  info '  安装 dotfiles'
+  info 'installing dotfiles'
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
 }
 
-install_homebrew
-install_ohmyzsh
+setup_gitconfig
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
 then
-  info "安装 homebrew dependencies"
-  if source bin/dot
+  info "installing dependencies"
+  if source bin/dot > /tmp/dotfiles-dot 2>&1
   then
-    success "homebrew dependencies 安装完成！"
+    success "dependencies installed"
   else
-    fail "安装homebrew dependencie失败"
+    fail "error installing dependencies"
   fi
 fi
 
 echo ''
-echo '  安装完毕！'
+echo '  All installed!'
