@@ -39,3 +39,9 @@ do
 done
 
 unset config_files
+
+export VIRTUALENV_USE_DISTRIBUTE=1
+export WORKON_HOME=$HOME/.venv
+source /usr/local/bin/virtualenvwrapper.sh
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true

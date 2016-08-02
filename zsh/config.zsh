@@ -1,3 +1,3 @@
 fpath=($DOTFILES/functions $fpath)
 
-autoload -U $DOTFILES/functions/*(:t)
+# autoload -U $DOTFILES/functions/*(:t)
