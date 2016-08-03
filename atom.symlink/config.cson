@@ -1,9 +1,47 @@
 "*":
+  "atom-material-ui":
+    colors:
+      abaseColor:
+        red: 236
+        green: 64
+        blue: 122
+        alpha: 1
+      accentColor:
+        red: 70
+        green: 255
+        blue: 193
+        alpha: 1
+      predefinedColor: "Pink"
+    fonts: {}
+    tabs:
+      compactTabs: true
+    treeView:
+      compactList: true
+  "autocomplete-python":
+    pythonPaths: "/User/steven/.venv/$PROJECT_NAME/bin/python;$PROJECT/venv/bin/python;/usr/bin/python"
   core:
     disabledPackages: [
       "background-tips"
       "exception-reporting"
       "metrics"
+      "language-clojure"
+      "language-coffee-script"
+      "language-csharp"
+      "language-go"
+      "language-hyperlink"
+      "language-java"
+      "language-less"
+      "language-make"
+      "language-mustache"
+      "language-objective-c"
+      "language-php"
+      "language-perl"
+      "language-ruby"
+      "language-ruby-on-rails"
+      "language-toml"
+      "package-generator"
+      "autocomplete-plus"
+      "welcome"
     ]
     followSymlinks: false
     hideGitIgnoredFiles: true
@@ -14,16 +52,21 @@
       "repositories"
       "tmp"
       "vendor"
+      "*.pyc"
+      "pyd"
     ]
     themes: [
-      "unity-ui"
-      "glacier-syntax"
+      "atom-material-ui"
+      "solarized-dark-syntax"
     ]
   editor:
-    fontFamily: "Menlo"
+    fontFamily: "Courier New"
     invisibles: {}
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
+    tabLength: 4
+    tabType: "soft"
+    zoomFontWhenCtrlScrolling: true
   "go-plus":
     goPath: "/Users/holman/Code/go"
   "release-notes":
@@ -35,5 +78,14 @@
       "text.git-commit"
       "text.html.basic"
     ]
+  "tree-view":
+    hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
+".css.scss.source":
+  editor:
+    tabLength: 4
+".sass.source":
+  editor:
+    tabLength: 4
