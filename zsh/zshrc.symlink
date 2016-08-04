@@ -127,10 +127,6 @@ alias ls="ls -lt"
 alias lsa="ls -lta"
 
 
-export VIRTUALENV_USE_DISTRIBUTE=1
-export WORKON_HOME=$HOME/.venv
-source /usr/local/bin/virtualenvwrapper.sh
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-export PIP_RESPECT_VIRTUALENV=true
+
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
