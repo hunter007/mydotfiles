@@ -50,7 +50,7 @@ setup_gitconfig () {
 }
 
 install_ohmyzsh () {
-    if ! [ -d .oh-my-zsh ]
+    if ! [ -d ~/.oh-my-zsh ]
     then
         info '安装 Oh My Zsh'
         wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
@@ -146,7 +146,7 @@ install_dotfiles () {
 }
 
 setup_gitconfig
-install_ohmyzsh
+# install_ohmyzsh
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
