@@ -146,7 +146,7 @@ install_dotfiles () {
 }
 
 setup_gitconfig
-# install_ohmyzsh
+install_ohmyzsh
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.

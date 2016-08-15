@@ -7,7 +7,6 @@ directory = Mackup
 [applications_to_sync]
 ansible
 ipython
-oh-my-zsh
 sourcetree
 atom
 ssh
@@ -21,7 +20,6 @@ zsh
 git
 pgsql
 vim
-gem
 
 [applications_to_ignore]
 # ssh
